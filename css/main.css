@@ -1,3 +1,6 @@
+body{
+  background: #F3F3E9;
+}
 .img1 {
   background:  url("https://dummyimage.com/1000x400/567/fff")   center;
   height: 500px;
