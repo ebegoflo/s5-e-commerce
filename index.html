@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
-	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
   <link rel="icon" href="assets/icon/card.png">
 	<link rel="stylesheet" href="css/main.css">
   <link rel="icon" href="assets/icon/store_icon.png">
@@ -16,7 +16,7 @@
 <body>
 
   <header>
-		<nav class="navbar navbar-inverse navbar-static-top">
+		<nav class="navbar navbar-inverse navbar-static-top navbar-fixed-top">
 			<div class="container">
 
 				<!-- Encabezado del menú -->
@@ -52,11 +52,18 @@
 						<li><a href="#">Contacto</a></li>
 					</ul>
 
+
+
+
 					<!-- Formulario de Busqueda -->
 					<form class="navbar-form navbar-right" action="" role="search">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="Buscar">
 							<button type="submit" class="btn btn-default">Buscar</button>
+              <a class="nav-link fa-2x" href="#">
+                <i class="fas fa-shopping-cart"></i> <!--Imágen del carrito-->
+                <span id="counterItems" class="badge badge-info">0</span><!--Contador-->
+              </a>
 						</div>
 					</form>
 				</div>
@@ -269,7 +276,6 @@
       </div>
     </div>
   </section>
-
 
 
 

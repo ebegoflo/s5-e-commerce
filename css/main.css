@@ -1,5 +1,6 @@
 body{
   background: #F3F3E9;
+  padding-top: 70px;
 }
 .img1 {
   background:  url("https://dummyimage.com/1000x400/567/fff")   center;
@@ -20,4 +21,18 @@ body{
 }
 .img5 {
   background:  url("https://dummyimage.com/1000x400/aa2/fff")   center;
+}
+ .btn-primary {
+  background-color: #000000;
+  border-color: #FFFFFF;
+}
+.carousel-inner, .btn-default {
+  background-color: #A41C37;
+  color: #ffffff;
+}
+
+
+.fa-shopping-cart  {
+  color: white;
+
 }
