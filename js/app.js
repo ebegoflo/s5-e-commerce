@@ -14,7 +14,7 @@ function enter (){
 //
 
 const products =result=> {
-  console.log(result);
+  console.log(result.results[0]);
 
   result.results.forEach((product, index) => {
     // console.log(product);
@@ -23,11 +23,18 @@ const products =result=> {
     // console.log(product);//Trae el arreglo
     // console.log(index);//Trae el índice
     $name = `name${index}`;//Contiene los ID
-    // console.log($name);
+    // Agregando los Nombres
     $nameProductIndex=`$nameProductIndex${index}`;
     $nameProductIndex=document.getElementById($name);
     let nameResult=result.results[index].title;//Contiene cada título
     $nameProductIndex.innerText=nameResult;
+    // Agregando los precios
+    $price= `price${index}`;
+    $priceProductIndex=`$priceProductIndex${index}`;
+    $priceProductIndex=document.getElementById($price);
+    let priceResult=result.results[index].price;//Contiene cada título
+    $priceProductIndex.innerText=priceResult;
+
     }
       })
 
