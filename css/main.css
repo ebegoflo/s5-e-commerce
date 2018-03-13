@@ -2,25 +2,10 @@ body{
   background: #F3F3E9;
   padding-top: 70px;
 }
-.img1 {
-  background:  url("https://dummyimage.com/1000x400/567/fff")   center;
-  height: 500px;
-}
-
-.img2 {
-  background:  url("https://dummyimage.com/1000x700/567/fff")   center;
-  height:  500px;
-}
-.img3 {
-  background:  url("https://dummyimage.com/1000x400/947/fff")   center;
-  height:  500px;
-}
-.img4 {
-  background:  url("https://dummyimage.com/1000x400/947/fff")   center;
-  height:  500px;
-}
-.img5 {
-  background:  url("https://dummyimage.com/1000x400/aa2/fff")   center;
+.img-complete {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
  .btn-primary {
   background-color: #000000;

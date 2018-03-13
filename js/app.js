@@ -2,7 +2,7 @@
 document.getElementById("search-product").addEventListener("submit", enter);
 
 
-function enter (e){ 
+function enter (e){
 
   e.preventDefault();
   var search=($('#search').val());
@@ -22,17 +22,25 @@ const products = result => {
 
   result.results.forEach((product, index) => {
 
-    if(index < 9){
+    if(index < 22&&index>9){
 
       //Agregando titulos
       $nameProductIndex=document.getElementById(`name${index}`);//select elemento contenedor de titulo
       let nameResult=result.results[index].title;//título
       $nameProductIndex.innerText=nameResult;//asignar a elemento el titulo
-      
+
       // Agregando los precios
       $priceProductIndex=document.getElementById(`price${index}`); //select elemento contenedor de precio
       let priceResult=result.results[index].price;//precio
       $priceProductIndex.innerText=(`$${priceResult}`);
+
+      //Agregando fotos
+      $imgProductIndex=document.getElementById(`img${index}`);//select elemento contenedor de imágen
+      let photoResult=result.results[index].thumbnail;//Imágen
+
+      $imgProductIndex.src=`${photoResult}`;
+
+      console.log(result.results[index]);
     }
   })
 }
