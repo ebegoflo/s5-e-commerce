@@ -85,7 +85,7 @@ const products = result => {
 
   result.results.forEach((product, index) => {
 
-    if(index < 22&&index>9){
+    if(index < 22 && index > 9){
 
       //Agregando titulos
       $nameProductIndex=document.getElementById(`name${index}`);//select elemento contenedor de titulo
@@ -100,10 +100,47 @@ const products = result => {
       //Agregando fotos
       $imgProductIndex=document.getElementById(`img${index}`);//select elemento contenedor de imágen
       let photoResult=result.results[index].thumbnail;//Imágen
-
       $imgProductIndex.src=`${photoResult}`;
 
-      console.log(result.results[index]);
+      /*function leerArticulo(articuloAdd) {
+           // const infoCurso = {
+           //      imagen: curso.querySelector('img').src,
+           //      titulo: curso.querySelector('h4').textContent,
+           //      precio: curso.querySelector('.precio span').textContent,
+           // }
+           //
+           // insertarCarrito(infoCurso);
+           console.log($imgProductIndex);
+
+      }*/
+
     }
+  })
+}
+
+const articulos = document.getElementById('lista-articulos');
+articulos.addEventListener('click', comprarArticulos);
+// Función que agrega carrito
+let productsInCart =[];
+function comprarArticulos(e) {
+     e.preventDefault();
+     // Delegation para agregar-carrito
+     if(e.target.classList.contains('comprar')) {
+        let btnProduct = e.target;
+        let idProduct = btnProduct.getAttribute('data-id'); //trae el valor del data
+        productsInCart.push(idProduct);
+        /*  const articuloAdd = e.target.parentElement.parentElement;
+          console.log(articuloAdd);
+          // Enviamos el curso seleccionado para tomar sus datos
+          leerArticulo(articuloAdd);*/
+     }
+}
+
+document.getElementById("checkout-cart").addEventListener("click", checkoutProducts);
+
+function checkoutProducts() {
+
+  productsInCart.forEach(element => {
+    console.log(productsInCart);
   })
 }
