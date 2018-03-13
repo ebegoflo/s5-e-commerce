@@ -59,7 +59,7 @@
 							<button type="submit" class="btn btn-default" id="btn-search">Buscar</button>
 
               <a class="nav-link fa-2x" href="#">
-                <i class="fas fa-shopping-cart"></i> <!--Imágen del carrito-->
+                <span id="checkout-cart"><i class="fas fa-shopping-cart"></i></span> <!--Imágen del carrito-->
                 <span id="counterItems" class="badge badge-info">0</span><!--Contador-->
               </a>
 						</div>
@@ -70,7 +70,7 @@
   </header>
   <!-- Inicia la página -->
   <section class="main">
-    <div class="container">
+    <div id="lista-articulos" class="container">
       <!-- Carousel -->
       <!-- <div class="row">
         <div class="col-md-12">
@@ -214,10 +214,10 @@
               </a>
               <div class="caption">
                 <h3 id="name10"></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
                 <h2 id="price10"></h2>
                 <p>
-                  <a href="#" class="btn btn-primary">Comprar</a>
+                  <a href="#" class="btn btn-primary comprar" data-id="10">Comprar</a>
                   <a href="#" class="btn btn-default">Detalles</a>
                 </p>
               </div>
@@ -231,10 +231,10 @@
               </a>
               <div class="caption">
                 <h3 id="name11"></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
                 <h2 id="price11"></h2>
                 <p>
-                  <a href="#" class="btn btn-primary">Comprar</a>
+                  <a href="#" class="btn btn-primary comprar" data-id="11">Comprar</a>
                   <a href="#" class="btn btn-default">Detalles</a>
                 </p>
               </div>
@@ -248,10 +248,10 @@
               </a>
               <div class="caption">
                 <h3 id="name12"></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
                 <h2 id="price12"></h2>
                 <p>
-                  <a href="#" class="btn btn-primary">Comprar</a>
+                  <a href="#" class="btn btn-primary comprar" data-id="12">Comprar</a>
                   <a href="#" class="btn btn-default">Detalles</a>
                 </p>
               </div>
@@ -265,10 +265,10 @@
               </a>
               <div class="caption">
                 <h3 id="name13"></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
                 <h2 id="price13"></h2>
                 <p>
-                  <a href="#" class="btn btn-primary">Comprar</a>
+                  <a href="#" class="btn btn-primary comprar" data-id="13">Comprar</a>
                   <a href="#" class="btn btn-default">Detalles</a>
                 </p>
               </div>
@@ -286,10 +286,10 @@
               </a>
               <div class="caption">
                 <h3 id="name14"></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
                 <h2 id="price14"></h2>
                 <p>
-                  <a href="#" class="btn btn-primary">Comprar</a>
+                  <a href="#" class="btn btn-primary comprar" data-id="14">Comprar</a>
                   <a href="#" class="btn btn-default">Detalles</a>
                 </p>
               </div>
@@ -303,10 +303,10 @@
               </a>
               <div class="caption">
                 <h3 id="name15"></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
                 <h2 id="price15"></h2>
                 <p>
-                  <a href="#" class="btn btn-primary">Comprar</a>
+                  <a href="#" class="btn btn-primary comprar" data-id="15">Comprar</a>
                   <a href="#" class="btn btn-default">Detalles</a>
                 </p>
               </div>
@@ -320,10 +320,10 @@
               </a>
               <div class="caption">
                 <h3 id="name16"></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
                 <h2 id="price16"></h2>
                 <p>
-                  <a href="#" class="btn btn-primary">Comprar</a>
+                  <a href="#" class="btn btn-primary comprar" data-id="16">Comprar</a>
                   <a href="#" class="btn btn-default">Detalles</a>
                 </p>
               </div>
@@ -337,10 +337,10 @@
               </a>
               <div class="caption">
                 <h3 id="name17"></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
                 <h2 id="price17"></h2>
                 <p>
-                  <a href="#" class="btn btn-primary">Comprar</a>
+                  <a href="#" class="btn btn-primary comprar" data-id="17">Comprar</a>
                   <a href="#" class="btn btn-default">Detalles</a>
                 </p>
               </div>
@@ -358,10 +358,10 @@
               </a>
               <div class="caption">
                 <h3 id="name18"></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
                 <h2 id="price18"></h2>
                 <p>
-                  <a href="#" class="btn btn-primary">Comprar</a>
+                  <a href="#" class="btn btn-primary comprar" data-id="18">Comprar</a>
                   <a href="#" class="btn btn-default">Detalles</a>
                 </p>
               </div>
@@ -375,10 +375,10 @@
               </a>
               <div class="caption">
                 <h3 id="name19"></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
                 <h2 id="price19"></h2>
                 <p>
-                  <a href="#" class="btn btn-primary">Comprar</a>
+                  <a href="#" class="btn btn-primary comprar" data-id="19">Comprar</a>
                   <a href="#" class="btn btn-default">Detalles</a>
                 </p>
               </div>
@@ -392,10 +392,10 @@
               </a>
               <div class="caption">
                 <h3 id="name20"></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
                 <h2 id="price20"></h2>
                 <p>
-                  <a href="#" class="btn btn-primary">Comprar</a>
+                  <a href="#" class="btn btn-primary comprar" data-id="20">Comprar</a>
                   <a href="#" class="btn btn-default">Detalles</a>
                 </p>
               </div>
@@ -409,10 +409,10 @@
               </a>
               <div class="caption">
                 <h3 id="name21"></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
                 <h2 id="price21"></h2>
                 <p>
-                  <a href="#" class="btn btn-primary">Comprar</a>
+                  <a href="#" class="btn btn-primary comprar" data-id="21">Comprar</a>
                   <a href="#" class="btn btn-default">Detalles</a>
                 </p>
               </div>
@@ -424,6 +424,8 @@
 
       </div>
     </div>
+    <!-- Contenedor resultado del carrito -->
+    <div class="container container-checkout"></div>
   </section>
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
