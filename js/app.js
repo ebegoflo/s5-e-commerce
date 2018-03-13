@@ -1,4 +1,10 @@
-function enter (){
+
+var formSearch= document.getElementById("form-search");
+formSearch.addEventListener("submit",enter);
+// console.log(formSearch);
+
+function enter (e){
+  e.preventDefault();
   var search=($('#search').val());
   fetch(`https://api.mercadolibre.com/sites/MLM/search?q=${search}`)
     .then(function(response) {
