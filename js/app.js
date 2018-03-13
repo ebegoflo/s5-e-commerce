@@ -1,7 +1,9 @@
+
 document.getElementById("search-product").addEventListener("submit", enter);
 
 
 function enter (e){ 
+
   e.preventDefault();
   var search=($('#search').val());
   fetch(`https://api.mercadolibre.com/sites/MLM/search?q=${search}`)
