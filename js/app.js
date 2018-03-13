@@ -1,9 +1,6 @@
-// require('../../js/carousel.js') //Para que  el carrusel funcione
-// $('.carousel').carousel();
-//
-
-  function search(search) {
-    fetch(`https://api.mercadolibre.com/sites/${siteSelected}/search?q=${search}`)
+function enter (){
+  var search=($('#search').val());
+  fetch(`https://api.mercadolibre.com/sites/MLM/search?q=${search}`)
     .then(function(response) {
         response.json().then(
           function(result){
@@ -13,24 +10,15 @@
           }
         );
     });
-  }
-
-
-
-var siteSelected = 'MLM';//Pais=México
-var categorie = '';
-
-// Función de busqueda
-$('#btn-search').on('click', function(event) {//El evento se detona al dar enter
-    search($('#search').val());
-});
-
-
-
+}
+//
 
 const products =result=> {
+  console.log(result);
 
   result.results.forEach((product, index) => {
+    // console.log(product);
+    // console.log(index);
     if(index<9){
     // console.log(product);//Trae el arreglo
     // console.log(index);//Trae el índice
