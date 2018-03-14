@@ -107,3 +107,37 @@ const products = result => {
     }
   })
 }
+
+/*---------- Initialize Firebase ----------*/
+var config = {
+    apiKey: "AIzaSyC0C9kN3EUeCjcttEwxrDz3R6AUKnVn6_Q",
+    authDomain: "ecommerce-be047.firebaseapp.com",
+    databaseURL: "https://ecommerce-be047.firebaseio.com",
+    projectId: "ecommerce-be047",
+    storageBucket: "",
+    messagingSenderId: "224014778274"
+  };
+  firebase.initializeApp(config);
+  
+  document.getElementById("login-google").addEventListener("click",loginGoogle);
+
+// Login con Google
+
+function loginGoogle(e){
+    e.preventDefault();
+    var provider = new firebase.auth.GoogleAuthProvider();
+    authentication(provider);
+  }
+  
+  function authentication(provider){
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+      var token = result.credential.accessToken;
+      var user = result.user;
+      
+    }).catch(function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      var email = error.email;
+      var credential = error.credential;
+    });
+  }
