@@ -67,8 +67,6 @@ var resutlsSearch = document.getElementById('result-search');
 document.getElementById("search-product").addEventListener("submit", enter);
 document.getElementById('show-home').addEventListener('click', show)
 
-
-
 function enter (e){
 
   e.preventDefault();
@@ -305,3 +303,44 @@ function loginGoogle(e){
   function emptyLocalStorage() {
       localStorage.clear();
   }
+
+/---------- Initialize Firebase ----------/
+var config = {
+    apiKey: "AIzaSyC0C9kN3EUeCjcttEwxrDz3R6AUKnVn6_Q",
+    authDomain: "ecommerce-be047.firebaseapp.com",
+    databaseURL: "https://ecommerce-be047.firebaseio.com",
+    projectId: "ecommerce-be047",
+    storageBucket: "",
+    messagingSenderId: "224014778274"
+  };
+  firebase.initializeApp(config);
+
+  document.getElementById("login-google").addEventListener("click",loginGoogle);
+
+// Login con Google
+
+function loginGoogle(e){
+    e.preventDefault();
+    var provider = new firebase.auth.GoogleAuthProvider();
+    authentication(provider);
+  }
+
+  function authentication(provider){
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+      let name =result.additionalUserInfo.profile.name;
+      let photo = result.user.photoURL;
+      paintUser(name,photo);
+
+    }).catch(function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      var email = error.email;
+      var credential = error.credential;
+    });
+  }
+
+  function paintUser(name, photo){
+  console.log(name, photo);
+  document.getElementById("user-name").textContent = name;
+  document.getElementById("user-photo").src= `${photo}`;
+}
