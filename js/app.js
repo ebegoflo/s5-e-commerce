@@ -330,6 +330,11 @@ function loginGoogle(e){
       let name =result.additionalUserInfo.profile.name;
       let photo = result.user.photoURL;
       paintUser(name,photo);
+      document.getElementById("search-product").classList.add("show");
+      document.getElementById("search-product").classList.remove("hidden");
+      document.getElementById("login-google").classList.add("hidden");
+      // document.getElementById("login-google").classList.remove("hidden");
+
 
     }).catch(function(error) {
       var errorCode = error.code;
