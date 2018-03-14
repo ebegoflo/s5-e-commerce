@@ -62,7 +62,11 @@ $('.thumbnail').hover(
     );
 // Fin código página inicial
 // Funciones de busqueda
+var home = document.getElementById('principal');
+var resutlsSearch = document.getElementById('result-search');
 document.getElementById("search-product").addEventListener("submit", enter);
+document.getElementById('show-home').addEventListener('click', show)
+
 
 
 function enter (e){
@@ -77,6 +81,10 @@ function enter (e){
           }
         );
     });
+    home.classList.remove('show');
+    home.classList.add('hidden');
+    resutlsSearch.classList.remove('hidden');
+    resutlsSearch.classList.add('show');
 }
 //
 
@@ -118,7 +126,7 @@ var config = {
     messagingSenderId: "224014778274"
   };
   firebase.initializeApp(config);
-  
+
   document.getElementById("login-google").addEventListener("click",loginGoogle);
 
 // Login con Google
@@ -128,16 +136,26 @@ function loginGoogle(e){
     var provider = new firebase.auth.GoogleAuthProvider();
     authentication(provider);
   }
-  
+
   function authentication(provider){
     firebase.auth().signInWithPopup(provider).then(function(result) {
       var token = result.credential.accessToken;
       var user = result.user;
-      
+
     }).catch(function(error) {
       var errorCode = error.code;
       var errorMessage = error.message;
       var email = error.email;
       var credential = error.credential;
     });
+  }
+
+  //Evento para regresar al home
+  function show(e) {
+    e.preventDefault();
+    home.classList.remove('hidden');
+    home.classList.add('show');
+    resutlsSearch.classList.remove('show');
+    resutlsSearch.classList.add('hidden');
+
   }
