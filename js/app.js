@@ -112,6 +112,20 @@ const products = result => {
       $imgProductIndex.src=`${photoResult}`;
 
       console.log(result.results[index]);
+
+      //Agregando clases a los botones
+      $btnIndex = document.querySelectorAll('a.btn-primary');
+    console.log($btnIndex);
+    // Se recorre el arreglo obtenido para asignarles el id del producto
+    $btnIndex.forEach(function(array, index){
+      console.log(array);
+      console.log(index);
+      console.log(result.results[index].id);
+      array.setAttribute("id",result.results[index].id);
+      array.classList.add("add-cart");
+      console.log(array);
+    });
+
     }
   })
 }
@@ -158,4 +172,136 @@ function loginGoogle(e){
     resutlsSearch.classList.remove('show');
     resutlsSearch.classList.add('hidden');
 
+  }
+
+  // Funcionalidad Carrito
+  // Variables
+  const cart = document.getElementById('cart');
+  const productsCont = document.getElementById('result-search'); //Contenedor de productos
+  const cartList = document.querySelector('#cart-list tbody');
+  const quitCartBtn = document.getElementById('quit-cart');
+  // Listeners
+  eventListeners();
+  function eventListeners() {
+       // Agrega al carrito de compras
+       productsCont.addEventListener('click', addCart);
+       // Elimina del carrito
+       cart.addEventListener('click', quitCart);
+       // Vaciar el carrito
+       quitCartBtn.addEventListener('click', emptyCart);
+       // Obtener el LocalStorage
+      document.addEventListener('DOMContentLoaded', readLocalStorage);
+  }
+  // Funciones
+  // Función que añade el curso al carrito
+  function addCart(e) {
+    console.log(e);
+       e.preventDefault();
+       if(e.target.classList.contains('add-cart')) {
+            const item = e.target.parentElement.parentElement.parentElement;//Eentramos a la card (imagen, texto y botones)
+            console.log(item);
+            // Función que obtiene la información del producto
+            productInformation(item);
+       }
+  }
+  function productInformation(item) {
+    const productData = {
+      image: item.querySelector('a img').src,
+      tittle: item.querySelector('div h5').textContent,
+      price: item.querySelector('div h2').textContent,
+      id: item.querySelector('div p a.btn-primary').getAttribute('id')
+    }
+    paintInCart(productData);
+  }
+  // Pinta los productos en el Carrito
+  function paintInCart(productData) {
+    const row = document.createElement('tr');
+       row.innerHTML = `
+          <td>
+               <img src="${productData.image}" width=100>
+          </td>
+          <td>${productData.tittle}</td>
+          <td>${productData.price}</td>
+          <td>
+            <a href="#" class="quit-item" data-id="${productData.id}">X</a>
+          </td>
+       `;
+       cartList.appendChild(row);
+       saveProductLocalStorage(productData);
+  }
+  // Elimina del carrito
+  function quitCart(e) {
+       e.preventDefault();
+       let item,
+          itemId;
+       if(e.target.classList.contains('quit-item') ) {
+            e.target.parentElement.parentElement.remove();
+            item = e.target.parentElement.parentElement;
+            itemId = item.querySelector('a').getAttribute('id');
+       }
+       removeProductsLocalStorage(itemId);
+  }
+  function emptyCart() {
+       while(cartList.firstChild) {
+            cartList.removeChild(cartList.firstChild);
+       }
+       // Vaciar Local Storage
+       emptyLocalStorage();
+       return false;
+  }
+  // Almacena productos Local Storage
+  function saveProductLocalStorage(productData) {
+      let items;
+      items = getProductsLocalStorage();
+      // guarda los items seleccionados en el localStorage
+      items.push(productData);
+       localStorage.setItem('items', JSON.stringify(items) );
+  }
+  // Comprueba elementos en Local Storage
+  function getProductsLocalStorage() {
+       let itemsLS;
+       if(localStorage.getItem('items') === null) {
+            itemsLS = [];
+       } else {
+            itemsLS = JSON.parse( localStorage.getItem('items') );
+       }
+       return itemsLS;
+  }
+  // Imprime los elementos del Local Storage en el carrito
+  function readLocalStorage() {
+      let itemsLS;
+      itemsLS = getProductsLocalStorage();
+      itemsLS.forEach(function(item){
+          // constrir el template
+          const row = document.createElement('tr');
+          row.innerHTML = `
+               <td>
+                    <img src="${item.image}" width=100>
+               </td>
+               <td>${item.tittle}</td>
+               <td>${item.price}</td>
+               <td>
+                    <a href="#" class="quit-item" data-id="${item.id}">X</a>
+               </td>
+          `;
+          cartList.appendChild(row);
+      });
+  }
+  // Elimina por el ID en Local Storage
+  function removeProductsLocalStorage(itemId) {
+      let itemsLS;
+      // Obtenemos el arreglo de cursos
+      itemsLS = getProductsLocalStorage();
+      // Iteramos comparando el ID del curso borrado con los del LS
+      itemsLS.forEach(function(itemsLS, index) {
+          if(itemsLS.id === itemId) {
+              itemsLS.splice(index, 1);
+          }
+      });
+      // Añadimos el arreglo actual a storage
+      localStorage.setItem('items', JSON.stringify(itemsLS) );
+  }
+  // Elimina todos del Local Storage
+  function emptyLocalStorage() {
+      localStorage.clear();
   }

@@ -59,19 +59,56 @@
 							<input type="text" class="form-control" id="search" placeholder="Buscar">
 							<button type="submit" class="btn btn-default" id="btn-search">Buscar</button>
 
-              <a class="nav-link fa-2x" href="#">
-                <i class="fas fa-shopping-cart"></i> <!--Imágen del carrito-->
-                <span id="counterItems" class="badge badge-info">0</span><!--Contador-->
-              </a>
+              <div class="dropdown">
+                <a class="dropdown-toggle fa-2x" data-toggle="dropdown">
+                  <i class="fas fa-shopping-cart"></i> <!--Imágen del carrito-->
+                  <span id="counterItems" class="badge badge-info">0</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <div id="cart">
+                      <table id="cart-list" class="u-full-width">
+                        <thead>
+                          <tr>
+                            <th>Imagen</th>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th>1</th>
+                            <th>1</th>
+                            <th>1</th>
+                            <th></th>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </li>
+
+                   <li>
+                     <a href="#" id="quit-cart" class="button u-full-width">Vaciar Carrito</a>
+                   </li>
+                   <li>
+                     Pagar
+                   </li>
+                 </ul>
+               </div>
+
+
 						</div>
 					</form>
 				</div>
 			</div>
 		</nav>
   </header>
+
   <!-- Inicia la página -->
   <section class="main">
-    <div class="container-fluid" id="principal">
+    <!-- Contenido página principal -->
+    <div class="container-fluid show" id="principal">
       <!-- Carousel -->
       <div class="row">
         <div class="col-md-12">
@@ -97,27 +134,27 @@
                 <img src="./assets/images/domestic.png" alt="domestic products">
               </div>
 
-            <div class="item">
-              <img src="./assets/images/tech.jpg" alt="technology">
+              <div class="item">
+                <img src="./assets/images/tech.jpg" alt="technology">
+              </div>
+
+              <div class="item">
+                <img src="./assets/images/phones.jpg" alt="phones">
+              </div>
+
+              <div class="item">
+                <img src="./assets/images/photo.jpg" alt="photo">
+              </div>
+
+              <div class="item">
+                <img src="./assets/images/gadgetsforgeeks.jpg" alt="gadgets">
+              </div>
+
+              <div class="item">
+                <img src="./assets/images/house.jpg" alt="house">
+              </div>
             </div>
-
-            <div class="item">
-              <img src="./assets/images/phones.jpg" alt="phones">
-            </div>
-
-            <div class="item">
-              <img src="./assets/images/photo.jpg" alt="photo">
-            </div>
-
-          <div class="item">
-            <img src="./assets/images/gadgetsforgeeks.jpg" alt="gadgets">
-          </div>
-
-          <div class="item">
-            <img src="./assets/images/house.jpg" alt="house">
-          </div>
-</div>
-            <!-- Controles -->
+          <!-- Controles -->
             <a href="#slider" class="left carousel-control" data-slide="prev">
               <span class="glyphicon glyphicon-chevron-left"></span>
               <span class="sr-only">Anterior</span>
@@ -152,7 +189,7 @@
               <div class="caption" id="cont1">
               </div>
             </div>
-        </div>
+          </div>
         </div>
 
         <!-- Segunda fila (en modo de escritorio 2 imágenes) -->
@@ -168,62 +205,62 @@
           <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="thumbnail img0 img-responsive" id="div3">
               <h3 id="name3"></h3>
-                <div class="caption" id="cont3">
-                </div>
+              <div class="caption" id="cont3">
               </div>
             </div>
           </div>
+        </div>
 
         <!-- Tercera fila (en modo escritorio 1 imágen) -->
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="thumbnail img0 img-responsive" id="div4">
               <h3 id="name4"></h3>
-                <div class="caption" id="cont4">
-                </div>
+              <div class="caption" id="cont4">
               </div>
             </div>
           </div>
+        </div>
 
         <!--Cuarta fila (en modo de escritorio 4 imágenes)  -->
         <div class="row">
           <div class="col-xs-12 col-sm-6 col-md-3">
             <div class="thumbnail  img0 img-responsive" id="div5">
               <h3 id="name5"></h3>
-                <div class="caption" id="cont5">
-                </div>
+              <div class="caption" id="cont5">
+              </div>
             </div>
           </div>
 
           <div class="col-xs-12 col-sm-6 col-md-3">
             <div class="thumbnail img0 img-responsive" id="div6">
               <h3 id="name6"></h3>
-                <div class="caption" id="cont6">
-                </div>
+              <div class="caption" id="cont6">
               </div>
             </div>
+          </div>
 
           <div class="col-xs-12 col-sm-6 col-md-3">
             <div class="thumbnail img0 img-responsive" id="div7">
               <h3 id="name7"></h3>
-
-                <div class="caption" id="cont7">
-                </div>
+              <div class="caption" id="cont7">
               </div>
             </div>
+          </div>
 
           <div class="col-xs-12 col-sm-6 col-md-3">
             <div class="thumbnail img0 img-responsive" id="div8">
               <h3 id="name8"></h3>
-                <div class="caption" id="cont8">
+              <div class="caption" id="cont8">
                 </div>
-              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="container" id="result-search">
+    <!-- Contenido página de búsqueda -->
+
+    <div class="container-fluid hidden" id="result-search">
         <!--Primera fila (en modo de escritorio 4 imágenes)  -->
         <div class="row">
           <div class="col-xs-12 col-sm-6 col-md-3">
