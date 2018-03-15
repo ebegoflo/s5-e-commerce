@@ -243,6 +243,30 @@ function quitCart(e) {
 
     itemPValString = itemPElement.innerHTML.substr(1,itemPElement.innerHTML.length);
     itemP = parseInt(itemPValString);
+  
+      // paypal(sum);
+       cartList.appendChild(row);
+       saveProductLocalStorage(productData);
+  }
+  // Elimina del carrito
+  function quitCart(e) {
+       e.preventDefault();
+       let item,
+          itemId;
+       if(e.target.classList.contains('quit-item') ) {
+            e.target.parentElement.parentElement.remove();
+            item = e.target.parentElement.parentElement;
+            itemId = item.querySelector('a').getAttribute('id');
+       }
+       removeProductsLocalStorage(itemId);
+  }
+  function emptyCart() {
+       while(cartList.firstChild) {
+            cartList.removeChild(cartList.firstChild);
+       }
+       // Vaciar Local Storage
+       emptyLocalStorage();
+       return false;
 
   }
   removeProductsLocalStorage(itemId,itemP);
@@ -356,8 +380,8 @@ var config = {
   messagingSenderId: "224014778274"
 };
 firebase.initializeApp(config);
+document.getElementById("login-google").addEventListener("click",loginGoogle);
 
-document.getElementById("login-google").addEventListener("click", loginGoogle);
 
 // Login con Google
 
@@ -367,24 +391,25 @@ function loginGoogle(e) {
   authentication(provider);
 }
 
-function authentication(provider) {
-  firebase.auth().signInWithPopup(provider).then(function(result) {
-    let name = result.additionalUserInfo.profile.name;
-    let photo = result.user.photoURL;
-    paintUser(name, photo);
-    document.getElementById("search-product").classList.add("show");
-    document.getElementById("search-product").classList.remove("hidden");
-    document.getElementById("login-google").classList.add("hidden");
-    document.getElementById("login-google").classList.remove("show");
-    // document.getElementById("login-google").classList.remove("hidden");
+  function authentication(provider){
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+      let name =result.additionalUserInfo.profile.name;
+      let photo = result.user.photoURL;
+      paintUser(name,photo);
+      document.getElementById("search-product").classList.add("show");
+      document.getElementById("search-product").classList.remove("hidden");
+      document.getElementById("login-google").classList.add("hidden");
+      document.getElementById("login-google").classList.remove("show");
+      // document.getElementById("login-google").classList.remove("hidden");
 
-  }).catch(function(error) {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    var email = error.email;
-    var credential = error.credential;
-  });
-}
+    }).catch(function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      var email = error.email;
+      var credential = error.credential;
+    });
+  }
+
 
 function paintUser(name, photo) {
   document.getElementById("user-name").textContent = name;
@@ -410,58 +435,56 @@ function showCategory() {
   paintCategory(categoryClicked);
 }
 
-function paintCategory(categoryClicked) {
+function paintCategory(categoryClicked){
   fetch(`https://api.mercadolibre.com/sites/MLM/search?q=${categoryClicked}`)
     .then(function(response) {
-      response.json().then(
-        function(result) {
-          products(result);
-        }
-      );
+        response.json().then(
+          function(result){
+            products(result);
+          }
+        );
     });
 }
-// // funcion PayPal
-//
-// // $("#paypal-button-container").click(paypal);
-// let clientTotal = document.getElementById("total-amount");
-// function paypal() {
-//   paypal.Button.render({
-//
-//       env: 'sandbox', // sandbox | production
-//
-//       // PayPal Client IDs - replace with your own
-//       // Create a PayPal app: https://developer.paypal.com/developer/applications/create
-//       client: {
-//           sandbox:    'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
-//           production: 'AXogq8X2C5u1kEiDR8P8KHsbQfS3YgiyxFd1Ovvjenv8nD-10pOhb4M9xOc_G6T1Adc3HKsdg5iEw1S9'
-//       },
-//
-//       // Show the buyer a 'Pay Now' button in the checkout flow
-//       commit: true,
-//
-//       // payment() is called when the button is clicked
-//       payment: function(data, actions) {
-//
-//           // Make a call to the REST api to create the payment
-//           return actions.payment.create({
-//               payment: {
-//                   transactions: [
-//                       {
-//                           amount: { total: `${clientTotal}`, currency: 'MXN' }
-//                       }
-//                   ]
-//               }
-//           });
-//       },
-//
-//       // onAuthorize() is called when the buyer approves the payment
-//       onAuthorize: function(data, actions) {
-//
-//           // Make a call to the REST api to execute the payment
-//           return actions.payment.execute().then(function() {
-//               window.alert('Payment Complete!');
-//           });
-//       }
-//
-//   }, '#paypal-button-container');
-// }
+// funcion PayPal
+function paypal(suma) {
+  paypal.Button.render({
+
+      env: 'sandbox', // sandbox | production
+
+      // PayPal Client IDs - replace with your own
+      // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+      client: {
+          sandbox:    'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
+          production: 'AXogq8X2C5u1kEiDR8P8KHsbQfS3YgiyxFd1Ovvjenv8nD-10pOhb4M9xOc_G6T1Adc3HKsdg5iEw1S9'
+      },
+
+      // Show the buyer a 'Pay Now' button in the checkout flow
+      commit: true,
+
+      // payment() is called when the button is clicked
+      payment: function(data, actions) {
+
+          // Make a call to the REST api to create the payment
+          return actions.payment.create({
+              payment: {
+                  transactions: [
+                      {
+                          amount: { total: `${suma}`, currency: 'USD' }
+                      }
+                  ]
+              }
+          });
+      },
+
+      // onAuthorize() is called when the buyer approves the payment
+      onAuthorize: function(data, actions) {
+
+          // Make a call to the REST api to execute the payment
+          return actions.payment.execute().then(function() {
+              window.alert('Payment Complete!');
+          });
+      }
+
+  }, '#paypal-button-container');
+}
+
