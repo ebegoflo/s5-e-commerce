@@ -89,3 +89,12 @@ h3 {
 }
 
 /* Estilos siguiente  */
+
+#result-search{
+  padding: 90px;
+  padding-left: 100px;
+}
+
+#user-name{
+  font-size: 20px;
+}
