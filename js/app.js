@@ -88,7 +88,7 @@ function enter (e){
 
 const products = result => {
   //console.log(result.results[0]);
-
+  console.log(result);
   result.results.forEach((product, index) => {
 
     if(index < 22&&index>9){
@@ -128,39 +128,39 @@ const products = result => {
   })
 }
 
-/*---------- Initialize Firebase ----------*/
-var config = {
-    apiKey: "AIzaSyC0C9kN3EUeCjcttEwxrDz3R6AUKnVn6_Q",
-    authDomain: "ecommerce-be047.firebaseapp.com",
-    databaseURL: "https://ecommerce-be047.firebaseio.com",
-    projectId: "ecommerce-be047",
-    storageBucket: "",
-    messagingSenderId: "224014778274"
-  };
-  firebase.initializeApp(config);
+// /*---------- Initialize Firebase ----------*/
+// var config = {
+//     apiKey: "AIzaSyC0C9kN3EUeCjcttEwxrDz3R6AUKnVn6_Q",
+//     authDomain: "ecommerce-be047.firebaseapp.com",
+//     databaseURL: "https://ecommerce-be047.firebaseio.com",
+//     projectId: "ecommerce-be047",
+//     storageBucket: "",
+//     messagingSenderId: "224014778274"
+//   };
+//   firebase.initializeApp(config);
 
-  document.getElementById("login-google").addEventListener("click",loginGoogle);
+//   document.getElementById("login-google").addEventListener("click",loginGoogle);
 
-// Login con Google
+// // Login con Google
 
-function loginGoogle(e){
-    e.preventDefault();
-    var provider = new firebase.auth.GoogleAuthProvider();
-    authentication(provider);
-  }
+// function loginGoogle(e){
+//     e.preventDefault();
+//     var provider = new firebase.auth.GoogleAuthProvider();
+//     authentication(provider);
+//   }
 
-  function authentication(provider){
-    firebase.auth().signInWithPopup(provider).then(function(result) {
-      var token = result.credential.accessToken;
-      var user = result.user;
+//   function authentication(provider){
+//     firebase.auth().signInWithPopup(provider).then(function(result) {
+//       var token = result.credential.accessToken;
+//       var user = result.user;
 
-    }).catch(function(error) {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      var email = error.email;
-      var credential = error.credential;
-    });
-  }
+//     }).catch(function(error) {
+//       var errorCode = error.code;
+//       var errorMessage = error.message;
+//       var email = error.email;
+//       var credential = error.credential;
+//     });
+//   }
 
   //Evento para regresar al home
   function show(e) {
@@ -304,7 +304,7 @@ function loginGoogle(e){
       localStorage.clear();
   }
 
-/---------- Initialize Firebase ----------/
+/*---------- Initialize Firebase ----------*/
 var config = {
     apiKey: "AIzaSyC0C9kN3EUeCjcttEwxrDz3R6AUKnVn6_Q",
     authDomain: "ecommerce-be047.firebaseapp.com",
@@ -315,7 +315,7 @@ var config = {
   };
   firebase.initializeApp(config);
 
-  document.getElementById("login-google").addEventListener("click",loginGoogle);
+document.getElementById("login-google").addEventListener("click",loginGoogle);
 
 // Login con Google
 
@@ -333,8 +333,8 @@ function loginGoogle(e){
       document.getElementById("search-product").classList.add("show");
       document.getElementById("search-product").classList.remove("hidden");
       document.getElementById("login-google").classList.add("hidden");
+      document.getElementById("login-google").classList.remove("show");
       // document.getElementById("login-google").classList.remove("hidden");
-
 
     }).catch(function(error) {
       var errorCode = error.code;
@@ -348,4 +348,34 @@ function loginGoogle(e){
   console.log(name, photo);
   document.getElementById("user-name").textContent = name;
   document.getElementById("user-photo").src= `${photo}`;
+}
+
+let categories =document.querySelectorAll(".category");
+
+categories.forEach(element => {
+  element.addEventListener("click",showCategory);
+});
+
+function showCategory(){
+  let categoryClicked =this.innerText;//da el id del li elegido
+  /*ocultar home y mostrar buscador*/
+  var home = document.getElementById('principal');
+  var resutlsSearch = document.getElementById('result-search');
+  home.classList.remove('show');
+  home.classList.add('hidden');
+  resutlsSearch.classList.remove('hidden');
+  resutlsSearch.classList.add('show');
+  /*terminar ocultar esto se puede refactorizar*/
+  paintCategory(categoryClicked);
+}
+
+function paintCategory(categoryClicked){
+  fetch(`https://api.mercadolibre.com/sites/MLM/search?q=${categoryClicked}`)
+    .then(function(response) {
+        response.json().then(
+          function(result){
+            products(result);
+          }
+        );
+    });
 }
