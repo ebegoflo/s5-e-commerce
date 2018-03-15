@@ -17,7 +17,7 @@
 
   <header>
 		<nav class="navbar navbar-inverse navbar-static-top navbar-fixed-top">
-			<div class="container">
+			<div class="container-fluid">
 
 				<!-- Encabezado del menú -->
 				<div class="navbar-header">
@@ -42,29 +42,28 @@
 						<li>
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Productos <span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Clasificación 1</a></li>
-								<li><a href="#">Clasificación 2</a></li>
-								<li><a href="#">Clasificación 3</a></li>
-								<li><a href="#">Clasificación 4</a></li>
-								<li><a href="#">Clasificación 5</a></li>
+								<li class="category"><a href="#">Celulares y Smartphones</a></li>
+								<li class="category"><a href="#">Deportes y Fitness</a></li>
+								<li class="category"><a href="#">Consolas y Videojuegos</a></li>
+								<li class="category"><a href="#">Electrodomésticos</a></li>
+								<li class="category"><a href="#">Electrónica, Audio y Video</a></li>
 							</ul>
 						</li>
 						<li><a href="#">Contacto</a></li>
           </ul>
-          <button class="btn btn-md btn-default" id="login-google" type="submit">Inicia sesión </button>
+          <button class="btn btn-md btn-default navbar-right" id="login-google" type="submit">Inicia sesión </button>
 					<!-- Formulario de Busqueda -->
 
-					<form class="navbar-form navbar-right" action="" role="search" id="search-product">
+					<form class="navbar-form navbar-right hidden" action="" role="search" id="search-product">
 						<div class="form-group">
 							<input type="text" class="form-control" id="search" placeholder="Buscar">
 							<button type="submit" class="btn btn-default" id="btn-search">Buscar</button>
-
+              <div id="user-container">
+                  <span id="user-name"></span>
+                  <img id="user-photo" width="50px">
+              </div>
               <div class="dropdown">
                 <a class="dropdown-toggle fa-2x" data-toggle="dropdown">
-                  <div id="user-container">
-                      <span id="user-name"></span>
-                      <img id="user-photo" width="50px">
-                  </div>
                   <i class="fas fa-shopping-cart"></i> <!--Imágen del carrito-->
                   <span id="counterItems" class="badge badge-info">0</span>
                 </a>
@@ -82,12 +81,19 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <th>1</th>
-                            <th>1</th>
-                            <th>1</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
                             <th></th>
                           </tr>
                         </tbody>
+                        <tfoot>
+                          <tr>
+                            <th></th>
+                            <th id="total-txt">Total: $</th>
+                            <th id="total-amount">-</th>
+                          </tr>
+                        </tfoot>
                       </table>
                     </div>
                   </li>
@@ -96,14 +102,14 @@
                      <a href="#" id="quit-cart" class="button u-full-width">Vaciar Carrito</a>
                    </li>
                    <li>
-                     Pagar
+                     <div id="paypal-button-container">Pago con PayPal</div>
                    </li>
                  </ul>
                </div>
-
+               <!-- Fin del menú dropdown -->
 
 						</div>
-					</form>
+
 				</div>
 			</div>
 		</nav>
@@ -277,7 +283,6 @@
                 <h2 id="price10"></h2>
                 <p>
                   <a href="#" class="btn btn-primary">Comprar</a>
-                  <a href="#" class="btn btn-default">Detalles</a>
                 </p>
               </div>
             </div>
@@ -293,7 +298,6 @@
                 <h2 id="price11"></h2>
                 <p>
                   <a href="#" class="btn btn-primary">Comprar</a>
-                  <a href="#" class="btn btn-default">Detalles</a>
                 </p>
               </div>
             </div>
@@ -309,7 +313,6 @@
                 <h2 id="price12"></h2>
                 <p>
                   <a href="#" class="btn btn-primary">Comprar</a>
-                  <a href="#" class="btn btn-default">Detalles</a>
                 </p>
               </div>
             </div>
@@ -325,7 +328,6 @@
                 <h2 id="price13"></h2>
                 <p>
                   <a href="#" class="btn btn-primary">Comprar</a>
-                  <a href="#" class="btn btn-default">Detalles</a>
                 </p>
               </div>
             </div>
@@ -345,7 +347,6 @@
                 <h2 id="price14"></h2>
                 <p>
                   <a href="#" class="btn btn-primary">Comprar</a>
-                  <a href="#" class="btn btn-default">Detalles</a>
                 </p>
               </div>
             </div>
@@ -361,7 +362,6 @@
                 <h2 id="price15"></h2>
                 <p>
                   <a href="#" class="btn btn-primary">Comprar</a>
-                  <a href="#" class="btn btn-default">Detalles</a>
                 </p>
               </div>
             </div>
@@ -377,7 +377,6 @@
                 <h2 id="price16"></h2>
                 <p>
                   <a href="#" class="btn btn-primary">Comprar</a>
-                  <a href="#" class="btn btn-default">Detalles</a>
                 </p>
               </div>
             </div>
@@ -393,7 +392,6 @@
                 <h2 id="price17"></h2>
                 <p>
                   <a href="#" class="btn btn-primary">Comprar</a>
-                  <a href="#" class="btn btn-default">Detalles</a>
                 </p>
               </div>
             </div>
@@ -411,7 +409,6 @@
                 <h2 id="price18"></h2>
                 <p>
                   <a href="#" class="btn btn-primary">Comprar</a>
-                  <a href="#" class="btn btn-default">Detalles</a>
                 </p>
               </div>
             </div>
@@ -427,7 +424,6 @@
                 <h2 id="price19"></h2>
                 <p>
                   <a href="#" class="btn btn-primary">Comprar</a>
-                  <a href="#" class="btn btn-default">Detalles</a>
                 </p>
               </div>
             </div>
@@ -443,7 +439,6 @@
                 <h2 id="price20"></h2>
                 <p>
                   <a href="#" class="btn btn-primary">Comprar</a>
-                  <a href="#" class="btn btn-default">Detalles</a>
                 </p>
               </div>
             </div>
@@ -459,7 +454,6 @@
                 <h2 id="price21"></h2>
                 <p>
                   <a href="#" class="btn btn-primary">Comprar</a>
-                  <a href="#" class="btn btn-default">Detalles</a>
                 </p>
               </div>
             </div>
@@ -479,7 +473,7 @@
   <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-database.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-messaging.js"></script>
-
+  <script src="https://www.paypalobjects.com/api/checkout.js" data-version-4></script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
