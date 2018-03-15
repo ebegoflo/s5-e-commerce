@@ -17,7 +17,7 @@
 
   <header>
 		<nav class="navbar navbar-inverse navbar-static-top navbar-fixed-top">
-			<div class="container">
+			<div class="container-fluid">
 
 				<!-- Encabezado del menú -->
 				<div class="navbar-header">
@@ -58,13 +58,12 @@
 						<div class="form-group">
 							<input type="text" class="form-control" id="search" placeholder="Buscar">
 							<button type="submit" class="btn btn-default" id="btn-search">Buscar</button>
-
+              <div id="user-container">
+                  <span id="user-name"></span>
+                  <img id="user-photo" width="50px">
+              </div>
               <div class="dropdown">
                 <a class="dropdown-toggle fa-2x" data-toggle="dropdown">
-                  <div id="user-container">
-                      <span id="user-name"></span>
-                      <img id="user-photo" width="50px">
-                  </div>
                   <i class="fas fa-shopping-cart"></i> <!--Imágen del carrito-->
                   <span id="counterItems" class="badge badge-info">0</span>
                 </a>
@@ -82,12 +81,19 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <th>1</th>
-                            <th>1</th>
-                            <th>1</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
                             <th></th>
                           </tr>
                         </tbody>
+                        <tfoot>
+                          <tr>
+                            <th></th>
+                            <th id="total-txt">Total: $</th>
+                            <th id="total-amount">-</th>
+                          </tr>
+                        </tfoot>
                       </table>
                     </div>
                   </li>
@@ -96,14 +102,15 @@
                      <a href="#" id="quit-cart" class="button u-full-width">Vaciar Carrito</a>
                    </li>
                    <li>
-                     <div id="paypal-button-container"></div>
+
+                     <div id="paypal-button-container">Pago con PayPal</div>
                    </li>
                  </ul>
                </div>
-
+               <!-- Fin del menú dropdown -->
 
 						</div>
-					</form>
+
 				</div>
 			</div>
 		</nav>
@@ -467,7 +474,7 @@
   <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-database.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-messaging.js"></script>
-
+  <script src="https://www.paypalobjects.com/api/checkout.js" data-version-4></script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
