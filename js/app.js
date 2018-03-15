@@ -115,39 +115,6 @@ const products = result => {
   })
 }
 
-// /*---------- Initialize Firebase ----------*/
-// var config = {
-//     apiKey: "AIzaSyC0C9kN3EUeCjcttEwxrDz3R6AUKnVn6_Q",
-//     authDomain: "ecommerce-be047.firebaseapp.com",
-//     databaseURL: "https://ecommerce-be047.firebaseio.com",
-//     projectId: "ecommerce-be047",
-//     storageBucket: "",
-//     messagingSenderId: "224014778274"
-//   };
-//   firebase.initializeApp(config);
-
-//   document.getElementById("login-google").addEventListener("click",loginGoogle);
-
-// // Login con Google
-
-// function loginGoogle(e){
-//     e.preventDefault();
-//     var provider = new firebase.auth.GoogleAuthProvider();
-//     authentication(provider);
-//   }
-
-//   function authentication(provider){
-//     firebase.auth().signInWithPopup(provider).then(function(result) {
-//       var token = result.credential.accessToken;
-//       var user = result.user;
-
-//     }).catch(function(error) {
-//       var errorCode = error.code;
-//       var errorMessage = error.message;
-//       var email = error.email;
-//       var credential = error.credential;
-//     });
-//   }
 
 //Evento para regresar al home
 function show(e) {
@@ -243,30 +210,6 @@ function quitCart(e) {
 
     itemPValString = itemPElement.innerHTML.substr(1,itemPElement.innerHTML.length);
     itemP = parseInt(itemPValString);
-  
-      // paypal(sum);
-       cartList.appendChild(row);
-       saveProductLocalStorage(productData);
-  }
-  // Elimina del carrito
-  function quitCart(e) {
-       e.preventDefault();
-       let item,
-          itemId;
-       if(e.target.classList.contains('quit-item') ) {
-            e.target.parentElement.parentElement.remove();
-            item = e.target.parentElement.parentElement;
-            itemId = item.querySelector('a').getAttribute('id');
-       }
-       removeProductsLocalStorage(itemId);
-  }
-  function emptyCart() {
-       while(cartList.firstChild) {
-            cartList.removeChild(cartList.firstChild);
-       }
-       // Vaciar Local Storage
-       emptyLocalStorage();
-       return false;
 
   }
   removeProductsLocalStorage(itemId,itemP);
@@ -282,6 +225,7 @@ function emptyCart() {
   cleanCount();
   return false;
 }
+
 // Almacena productos Local Storage
 function saveProductLocalStorage(productData) {
   let items;
@@ -344,6 +288,8 @@ function addition (price){
   totalValue += price;
   sumVal.innerHTML = totalValue;
   localStorage.setItem('total', totalValue) ;
+  payPal(totalValue);
+  console.log(totalValue);
 }
 
 function increaseCount (){
@@ -446,45 +392,51 @@ function paintCategory(categoryClicked){
     });
 }
 // funcion PayPal
-function paypal(suma) {
-  paypal.Button.render({
 
-      env: 'sandbox', // sandbox | production
+function payPal(totalValue) {
+  // Render the PayPal button
 
-      // PayPal Client IDs - replace with your own
-      // Create a PayPal app: https://developer.paypal.com/developer/applications/create
-      client: {
-          sandbox:    'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
-          production: 'AXogq8X2C5u1kEiDR8P8KHsbQfS3YgiyxFd1Ovvjenv8nD-10pOhb4M9xOc_G6T1Adc3HKsdg5iEw1S9'
-      },
+    paypal.Button.render({
 
-      // Show the buyer a 'Pay Now' button in the checkout flow
-      commit: true,
+        // Set your environment
 
-      // payment() is called when the button is clicked
-      payment: function(data, actions) {
+        env: 'sandbox', // sandbox | production
 
-          // Make a call to the REST api to create the payment
-          return actions.payment.create({
-              payment: {
-                  transactions: [
-                      {
-                          amount: { total: `${suma}`, currency: 'USD' }
-                      }
-                  ]
-              }
-          });
-      },
+        // Specify the style of the button
 
-      // onAuthorize() is called when the buyer approves the payment
-      onAuthorize: function(data, actions) {
+        style: {
+            label: 'checkout',
+            size:  'small',    // small | medium | large | responsive
+            shape: 'pill',     // pill | rect
+            color: 'gold'      // gold | blue | silver | black
+        },
 
-          // Make a call to the REST api to execute the payment
-          return actions.payment.execute().then(function() {
-              window.alert('Payment Complete!');
-          });
-      }
+        // PayPal Client IDs - replace with your own
+        // Create a PayPal app: https://developer.paypal.com/developer/applications/create
 
-  }, '#paypal-button-container');
+        client: {
+            sandbox:    'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
+            production: 'AXogq8X2C5u1kEiDR8P8KHsbQfS3YgiyxFd1Ovvjenv8nD-10pOhb4M9xOc_G6T1Adc3HKsdg5iEw1S9'
+        },
+        commit: true,
+
+        payment: function(data, actions) {
+            return actions.payment.create({
+                payment: {
+                    transactions: [
+                        {
+                            amount: { total: totalValue, currency: 'MXN' }
+                        }
+                    ]
+                }
+            });
+        },
+
+        onAuthorize: function(data, actions) {
+            return actions.payment.execute().then(function() {
+                window.alert('Payment Complete!');
+            });
+        }
+
+    }, '#paypal-button-container');
 }
-
