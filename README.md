@@ -9,7 +9,7 @@ Para crear el proyecto se utilizo javascript, HTML, CSS, api-rest, control de ve
 
 ![image](https://user-images.githubusercontent.com/32860020/38847689-95a19652-41c8-11e8-94a4-05b4ee878aff.png)
 
-Es necesario que el usurio inicie sesión con Google para que pueda efectuar cualquier compra.
+Es necesario que el usuario inicie sesión con Google para que pueda efectuar cualquier compra.
 
 ![image](https://user-images.githubusercontent.com/32860020/38847732-ced082bc-41c8-11e8-8eb6-812ba3a0847d.png)
 
